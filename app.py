@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from blacklist import BLACKLIST
+from db import db
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 
 app = Flask(__name__)
@@ -38,7 +39,5 @@ api.add_resource(UserLogout, "/logout")
 api.add_resource(TokenRefresh, "/refresh")
 
 if __name__ == "__main__":
-    from db import db
-
     db.init_app(app)
     app.run(port=5000, debug=True)
