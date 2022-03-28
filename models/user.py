@@ -1,7 +1,4 @@
 from db import db
-from typing import Dict, Union
-
-UserJSON = Dict[str, Union[int, str]]
 
 
 class UserModel(db.Model):
@@ -14,9 +11,6 @@ class UserModel(db.Model):
     def __init__(self, username: str, password: str):
         self.username = username
         self.password = password
-
-    def json(self) -> UserJSON:
-        return {"id": self.id, "username": self.username}
 
     def save_to_db(self) -> None:
         db.session.add(self)
