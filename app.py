@@ -6,6 +6,8 @@ from blacklist import BLACKLIST
 from db import db
 from ma import ma
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
+from resources.item import Item, ItemList
+from resources.store import Store, StoreList
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
@@ -33,6 +35,10 @@ def check_if_token_in_blacklist(jwt_header, jwt_payload):
     return False
 
 
+api.add_resource(Store, "/store/<string:name>")
+api.add_resource(StoreList, "/stores")
+api.add_resource(Item, "/item/<string:name>")
+api.add_resource(ItemList, "/items")
 api.add_resource(UserRegister, "/register")
 api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
