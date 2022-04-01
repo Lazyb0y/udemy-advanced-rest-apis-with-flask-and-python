@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, make_response, render_template
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
@@ -100,5 +100,6 @@ class UserConfirm(Resource):
 
         user.activated = True
         user.save_to_db()
-        return {"message": USER_CONFIRMED}
 
+        headers = {"Content-Type": "text/html"}
+        return make_response(render_template("confirmation_page.html", email=user.username), 200, headers)
