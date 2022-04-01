@@ -6,7 +6,7 @@ from marshmallow import ValidationError
 from blacklist import BLACKLIST
 from db import db
 from ma import ma
-from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
+from resources.user import UserConfirm, UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
@@ -45,6 +45,7 @@ api.add_resource(Store, "/store/<string:name>")
 api.add_resource(StoreList, "/stores")
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList, "/items")
+api.add_resource(UserConfirm, "/user_confirm/<int:user_id>")
 api.add_resource(UserRegister, "/register")
 api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
