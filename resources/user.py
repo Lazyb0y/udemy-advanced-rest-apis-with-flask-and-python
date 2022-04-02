@@ -18,14 +18,18 @@ from schemas.user import UserSchema
 EMAIL_ALREADY_EXISTS = "A user with that email already exists."
 FAILED_TO_CREATE = "Internal server error. Failed to create user."
 USER_ALREADY_EXISTS = "A user with that username already exists."
-NOT_CONFIRMED_ERROR = "You have not confirmed registration, please check your email <{}>."
+NOT_CONFIRMED_ERROR = (
+    "You have not confirmed registration, please check your email <{}>."
+)
 USER_NOT_FOUND = "User not found."
 USER_DELETED = "User deleted."
 INVALID_CREDENTIALS = "Invalid credentials!"
 USER_LOGGED_OUT = "User <id={}> successfully logged out."
 USER_CONFIRMED = "The user has been activated successfully."
-SUCCESS_REGISTER_MESSAGE = "Account created successfully, an email with an activation link has been send to your " \
-                           "email address. Please check your email for more details. "
+SUCCESS_REGISTER_MESSAGE = (
+    "Account created successfully, an email with an activation link has been send to your "
+    "email address. Please check your email for more details. "
+)
 
 user_schema = UserSchema()
 
@@ -114,4 +118,6 @@ class UserConfirm(Resource):
         user.save_to_db()
 
         headers = {"Content-Type": "text/html"}
-        return make_response(render_template("confirmation_page.html", email=user.username), 200, headers)
+        return make_response(
+            render_template("confirmation_page.html", email=user.username), 200, headers
+        )
