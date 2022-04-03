@@ -88,7 +88,7 @@ class UserLogin(Resource):
                 access_token = create_access_token(identity=user.id, fresh=True)
                 refresh_token = create_refresh_token(user.id)
                 return {"access_token": access_token, "refresh_token": refresh_token}
-            return {"message": NOT_CONFIRMED_ERROR.format(user.username)}, 400
+            return {"message": NOT_CONFIRMED_ERROR.format(user.email)}, 400
         return {"message": INVALID_CREDENTIALS}, 401
 
 
@@ -123,5 +123,5 @@ class UserConfirm(Resource):
 
         headers = {"Content-Type": "text/html"}
         return make_response(
-            render_template("confirmation_page.html", email=user.username), 200, headers
+            render_template("confirmation_page.html", email=user.email), 200, headers
         )
