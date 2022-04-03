@@ -12,6 +12,7 @@ from flask_restful import Resource
 from werkzeug.security import safe_str_cmp
 
 from blacklist import BLACKLIST
+from libs.mailgun import MailGunException
 from models.user import UserModel
 from schemas.user import UserSchema
 
@@ -50,6 +51,9 @@ class UserRegister(Resource):
             user.save_to_db()
             user.send_confirmation_email()
             return {"message": SUCCESS_REGISTER_MESSAGE}, 201
+        except MailGunException as e:
+            user.delete_from_db()
+            return {"message": str(e)}, 500
         except:
             traceback.print_exc()
             return {"message": FAILED_TO_CREATE}, 500
