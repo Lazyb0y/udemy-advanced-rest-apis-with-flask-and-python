@@ -20,7 +20,9 @@ class Mailgun:
     FROM_EMAIL = "postmaster@sandboxe8c60dc8add04d689d81a59b032e5cc4.mailgun.org"
 
     @classmethod
-    def send_email(cls, email: List[str], subject: str, text: str, html: str) -> Response:
+    def send_email(
+        cls, email: List[str], subject: str, text: str, html: str
+    ) -> Response:
         if cls.MAILGUN_API_KEY is None:
             raise MailGunException(FAILED_LOAD_API_KEY)
 
