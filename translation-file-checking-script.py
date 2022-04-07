@@ -22,8 +22,5 @@ for filename in os.listdir(STRINGS_FOLDER):
     with open(f"{STRINGS_FOLDER}/{filename}") as file:
         strings = json.load(file)
         check_contains_all_strings(
-            source_strings,
-            SOURCE_TRANSLATION,
-            strings,
-            filename
+            source_strings, SOURCE_TRANSLATION, strings, filename
         )
