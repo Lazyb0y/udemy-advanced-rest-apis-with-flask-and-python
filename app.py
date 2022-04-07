@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-from flask_uploads import configure_uploads, patch_request_class
+from flask_uploads import configure_uploads
 from marshmallow import ValidationError
 
 from blacklist import BLACKLIST
@@ -25,7 +25,7 @@ app = Flask(__name__)
 load_dotenv(".env", verbose=True)
 app.config.from_object("default_config")
 app.config.from_envvar("APPLICATION_SETTINGS")
-patch_request_class(app, 10 * 1024 * 1024)  # 10MB max size upload
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10MB max size upload
 configure_uploads(app, IMAGE_SET)
 api = Api(app)
 
