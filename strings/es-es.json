@@ -34,5 +34,8 @@
   "image_illegal_file_name": "Spanish: Illegal filename '{}' requested.",
   "image_not_found": "Spanish: Image '{}' not found.",
   "image_deleted": "Spanish: Image '{}' deleted.",
-  "image_delete_failed": "Spanish: Internal server error! Failed to delete image."
+  "image_delete_failed": "Spanish: Internal server error! Failed to delete image.",
+
+  "avatar_delete_failed": "Spanish: Internal server error! Failed to delete avatar.",
+  "avatar_uploaded": "Spanish: Avatar '{}' uploaded."
 }
