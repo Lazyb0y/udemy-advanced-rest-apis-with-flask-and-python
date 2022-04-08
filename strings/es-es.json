@@ -30,5 +30,9 @@
   "user_registered": "Spanish: Account created successfully, an email with an activation link has been sent to your email address, please check.",
 
   "image_uploaded": "Spanish: Image '{}' uploaded.",
-  "image_illegal_extension": "Spanish: Extension '{}' is not allowed."
+  "image_illegal_extension": "Spanish: Extension '{}' is not allowed.",
+  "image_illegal_file_name": "Spanish: Illegal filename '{}' requested.",
+  "image_not_found": "Spanish: Image '{}' not found.",
+  "image_deleted": "Spanish: Image '{}' deleted.",
+  "image_delete_failed": "Spanish: Internal server error! Failed to delete image."
 }

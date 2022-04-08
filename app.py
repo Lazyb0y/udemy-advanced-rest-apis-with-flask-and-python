@@ -17,7 +17,7 @@ from resources.user import (
     TokenRefresh,
 )
 from resources.confirmation import Confirmation, ConfirmationByUser
-from resources.image import ImageUpload
+from resources.image import Image, ImageUpload
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
@@ -53,6 +53,7 @@ def check_if_token_in_blacklist(jwt_header, jwt_payload):
 
 api.add_resource(Store, "/store/<string:name>")
 api.add_resource(StoreList, "/stores")
+api.add_resource(Image, "/image/<string:filename>")
 api.add_resource(ImageUpload, "/upload/image")
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList, "/items")
