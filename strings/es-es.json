@@ -37,5 +37,6 @@
   "image_delete_failed": "Spanish: Internal server error! Failed to delete image.",
 
   "avatar_delete_failed": "Spanish: Internal server error! Failed to delete avatar.",
-  "avatar_uploaded": "Spanish: Avatar '{}' uploaded."
+  "avatar_uploaded": "Spanish: Avatar '{}' uploaded.",
+  "avatar_not_found": "Avatar not found."
 }

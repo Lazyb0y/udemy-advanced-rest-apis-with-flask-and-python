@@ -111,3 +111,17 @@ class AvatarUpload(Resource):
             return {
                 "message": gettext("image_illegal_extension").format(extension)
             }, 400
+
+
+class Avatar(Resource):
+    @classmethod
+    def get(cls, user_id: int):
+        """
+        This endpoint returns the avatar of the user specified by user_id.
+        """
+        folder = "avatars"
+        filename = f"user_{user_id}"
+        avatar = image_helper.find_image_any_format(filename, folder)
+        if avatar:
+            return send_file(avatar)
+        return {"message": gettext("avatar_not_found")}, 404
