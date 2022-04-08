@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 from flask_uploads import configure_uploads
 from marshmallow import ValidationError
 
@@ -28,6 +29,7 @@ app.config.from_envvar("APPLICATION_SETTINGS")
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10MB max size upload
 configure_uploads(app, IMAGE_SET)
 api = Api(app)
+migrate = Migrate(app, db)
 
 
 @app.before_first_request
