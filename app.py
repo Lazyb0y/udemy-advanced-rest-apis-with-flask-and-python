@@ -6,6 +6,8 @@ from flask_migrate import Migrate
 from flask_uploads import configure_uploads
 from marshmallow import ValidationError
 
+load_dotenv(".env", verbose=True)
+
 from blacklist import BLACKLIST
 from db import db
 from libs.image_helper import IMAGE_SET
@@ -19,12 +21,12 @@ from resources.user import (
     TokenRefresh,
 )
 from resources.confirmation import Confirmation, ConfirmationByUser
+from resources.github_login import GithubLogin
 from resources.image import AvatarUpload, Image, ImageUpload
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
 app = Flask(__name__)
-load_dotenv(".env", verbose=True)
 app.config.from_object("default_config")
 app.config.from_envvar("APPLICATION_SETTINGS")
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10MB max size upload
@@ -57,6 +59,7 @@ def check_if_token_in_blacklist(jwt_header, jwt_payload):
 api.add_resource(AvatarUpload, "/upload/avatar")
 api.add_resource(Store, "/store/<string:name>")
 api.add_resource(StoreList, "/stores")
+api.add_resource(GithubLogin, "/login/github")
 api.add_resource(Image, "/image/<string:filename>")
 api.add_resource(ImageUpload, "/upload/image")
 api.add_resource(Item, "/item/<string:name>")
