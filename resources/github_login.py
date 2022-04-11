@@ -34,7 +34,7 @@ class GithubAuthorize(Resource):
 
         user = UserModel.find_by_username(github_username)
         if not user:
-            user = UserModel(username=github_user, password=None)
+            user = UserModel(username=github_username, password=None, email="test@test.com")
             user.save_to_db()
 
         access_token = create_access_token(identity=user.id, fresh=True)
