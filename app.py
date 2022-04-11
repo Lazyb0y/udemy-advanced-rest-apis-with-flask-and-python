@@ -21,7 +21,7 @@ from resources.user import (
     TokenRefresh,
 )
 from resources.confirmation import Confirmation, ConfirmationByUser
-from resources.github_login import GithubLogin
+from resources.github_login import GithubLogin, GithubAuthorize
 from resources.image import AvatarUpload, Image, ImageUpload
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
@@ -60,6 +60,7 @@ api.add_resource(AvatarUpload, "/upload/avatar")
 api.add_resource(Store, "/store/<string:name>")
 api.add_resource(StoreList, "/stores")
 api.add_resource(GithubLogin, "/login/github")
+api.add_resource(GithubAuthorize, "/login/github/authorized")
 api.add_resource(Image, "/image/<string:filename>")
 api.add_resource(ImageUpload, "/upload/image")
 api.add_resource(Item, "/item/<string:name>")
