@@ -1,4 +1,4 @@
-from flask import g, request
+from flask import g, request, url_for
 from flask_jwt_extended import create_access_token, create_refresh_token
 from flask_restful import Resource
 from schemas.user import UserSchema
@@ -12,9 +12,7 @@ user_schema = UserSchema()
 class GithubLogin(Resource):
     @classmethod
     def get(cls):
-        return github.authorize(
-            callback="http://localhost:5000/login/github/authorized"
-        )
+        return github.authorize(url_for("github.authorize", _external=True))
 
 
 class GithubAuthorize(Resource):
