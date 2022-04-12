@@ -28,6 +28,7 @@
   "user_not_confirmed": "Spanish: You have not confirmed registration, please check your email <{}>.",
   "user_error_creating": "Spanish: Internal server error. Failed to create user.",
   "user_registered": "Spanish: Account created successfully, an email with an activation link has been sent to your email address, please check.",
+  "user_password_updated": "Spanish: User password updated successfully.",
 
   "image_uploaded": "Spanish: Image '{}' uploaded.",
   "image_illegal_extension": "Spanish: Extension '{}' is not allowed.",

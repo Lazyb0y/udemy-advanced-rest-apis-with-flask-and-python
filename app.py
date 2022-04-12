@@ -19,6 +19,7 @@ from resources.user import (
     UserLogin,
     UserLogout,
     TokenRefresh,
+    SetPassword,
 )
 from resources.confirmation import Confirmation, ConfirmationByUser
 from resources.github_login import GithubLogin, GithubAuthorize
@@ -72,6 +73,7 @@ api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
 api.add_resource(UserLogout, "/logout")
 api.add_resource(TokenRefresh, "/refresh")
+api.add_resource(SetPassword, "/user/password")
 
 if __name__ == "__main__":
     db.init_app(app)
