@@ -73,7 +73,7 @@ class UserLogin(Resource):
         user_data = user_schema.load(user_json, partial=("email",))
 
         user = UserModel.find_by_username(user_data.username)
-        if user and safe_str_cmp(user.password, user_data.password):
+        if user and user.password and safe_str_cmp(user.password, user_data.password):
             confirmation = user.most_recent_confirmation
             if confirmation and confirmation.confirmed:
                 access_token = create_access_token(identity=user.id, fresh=True)
