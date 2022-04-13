@@ -2,7 +2,6 @@ from db import db
 from typing import List
 
 from models.store import StoreModel
-from models.order import OrderModel
 
 
 class ItemModel(db.Model):
@@ -14,9 +13,6 @@ class ItemModel(db.Model):
 
     store_id = db.Column(db.Integer, db.ForeignKey("stores.id"), nullable=False)
     store = db.relationship("StoreModel")
-
-    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
-    order = db.relationship("OrderModel")
 
     @classmethod
     def find_by_id(cls, _id: int) -> "ItemModel":
