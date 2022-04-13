@@ -41,5 +41,6 @@
   "avatar_uploaded": "Avatar '{}' uploaded.",
   "avatar_not_found": "Avatar not found.",
 
-  "order_item_by_id_not_found": "An item <id={}> in this order cannot be found."
+  "order_item_by_id_not_found": "An item <id={}> in this order cannot be found.",
+  "order_error": "Order failed, please contact support."
 }

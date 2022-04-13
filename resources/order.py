@@ -2,6 +2,7 @@ from collections import Counter
 
 from flask import request
 from flask_restful import Resource
+from stripe import error
 
 from libs.strings import gettext
 from models.item import ItemModel
@@ -44,7 +45,35 @@ class Order(Resource):
         order = OrderModel(items=items, status="pending")
         order.save_to_db()
 
-        order.set_status("failed")
-        order.charge_with_stripe(data["token"])
-        order.set_status("complete")
-        return order_schema.dump(order)
+        try:
+            order.set_status("failed")  # assume the order would fail until it's completed
+            order.charge_with_stripe(data["token"])
+            order.set_status("complete")  # charge succeeded
+            return order_schema.dump(order), 200
+            # the following error handling is advised by Stripe, although the handling implementations are identical,
+            # we choose to specify them separately just to give the students a better idea what we can expect
+        except error.CardError as e:
+            # Since it's a decline, stripe.error.CardError will be caught
+            return e.json_body, e.http_status
+        except error.RateLimitError as e:
+            # Too many requests made to the API too quickly
+            return e.json_body, e.http_status
+        except error.InvalidRequestError as e:
+            # Invalid parameters were supplied to Stripe's API
+            return e.json_body, e.http_status
+        except error.AuthenticationError as e:
+            # Authentication with Stripe's API failed
+            # (maybe you changed API keys recently)
+            return e.json_body, e.http_status
+        except error.APIConnectionError as e:
+            # Network communication with Stripe failed
+            return e.json_body, e.http_status
+        except error.StripeError as e:
+            # Display a very generic error to the user, and maybe send
+            # yourself an email
+            return e.json_body, e.http_status
+        except Exception as e:
+            # Something else happened, completely unrelated to Stripe
+            print(e)
+            return {"message": gettext("order_error")}, 500
+

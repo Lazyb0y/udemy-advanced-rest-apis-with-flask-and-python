@@ -41,5 +41,6 @@
   "avatar_uploaded": "Spanish: Avatar '{}' uploaded.",
   "avatar_not_found": "Spanish: Avatar not found.",
 
-  "order_item_by_id_not_found": "Spanish: An item <id={}> in this order cannot be found."
+  "order_item_by_id_not_found": "Spanish: An item <id={}> in this order cannot be found.",
+  "order_error": "Spanish: Order failed, please contact support."
 }
