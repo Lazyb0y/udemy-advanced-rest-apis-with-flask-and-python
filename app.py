@@ -25,6 +25,7 @@ from resources.confirmation import Confirmation, ConfirmationByUser
 from resources.github_login import GithubLogin, GithubAuthorize
 from resources.image import AvatarUpload, Image, ImageUpload
 from resources.item import Item, ItemList
+from resources.order import Order
 from resources.store import Store, StoreList
 
 app = Flask(__name__)
@@ -74,6 +75,7 @@ api.add_resource(UserLogin, "/login")
 api.add_resource(UserLogout, "/logout")
 api.add_resource(TokenRefresh, "/refresh")
 api.add_resource(SetPassword, "/user/password")
+api.add_resource(Order, "/order")
 
 if __name__ == "__main__":
     db.init_app(app)
